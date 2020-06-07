@@ -1,4 +1,4 @@
-#scheduler-react-sample
+# scheduler-react-sample
 
 Example for scheduler using module DHTMLX Scheduler
 
@@ -11,6 +11,7 @@ In the project directory, you can run:
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Link
+
+[Link to tutorial](https://dhtmlx.com/blog/use-dhtmlx-scheduler-component-react-js-library-demo/)
 
