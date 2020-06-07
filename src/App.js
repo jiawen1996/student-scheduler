@@ -48,21 +48,10 @@ class App extends Component {
     this.addMessage(message);
   };
 
-  handleTimeFormatStateChange = (state) => {
-    this.setState({
-      currentTimeFormatState: state,
-    });
-  };
   render() {
     const { currentTimeFormatState, messages } = this.state;
     return (
       <div>
-        <div className="tool-bar">
-          <Toolbar
-            timeFormatState={currentTimeFormatState}
-            onTimeFormatStateChange={this.handleTimeFormatStateChange}
-          />
-        </div>
         <div className="scheduler-container">
           <Scheduler
             events={data}
