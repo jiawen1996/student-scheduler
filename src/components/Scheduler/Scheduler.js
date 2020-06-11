@@ -10,10 +10,13 @@ const toColorName = index => (
         0: "orange",
         1: "green",
         2: "red",
+        3: "blue",
+        4: "grey"
     }[index]
 )
 const changeColorForEachStudent = (events, currentStudents) => events.map(event => {
     event.color = toColorName(currentStudents.indexOf(event.login))
+    event.text = event.text + "\n" + event.login
     scheduler.updateEvent(event.id)
 
 })
