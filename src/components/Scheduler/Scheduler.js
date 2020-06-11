@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import 'dhtmlx-scheduler';
 import 'dhtmlx-scheduler/codebase/dhtmlxscheduler_material.css';
- 
+
 const scheduler = window.scheduler;
- 
+const changeColorForEachStudent = events => events.map(event => {
+    if (event.login === "jiawen") {
+        event.color = "green"
+        scheduler.updateEvent(event.id)
+    }
+})
+
 export default class Scheduler extends Component {
     initSchedulerEvents() {
         if (scheduler._$initialized) {
             return;
         }
- 
+
         const onDataUpdated = this.props.onDataUpdated;
- 
+
         scheduler.attachEvent('onEventAdded', (id, ev) => {
             if (onDataUpdated) {
                 onDataUpdated('create', ev, id);
             }
         });
- 
+
         scheduler.attachEvent('onEventChanged', (id, ev) => {
             if (onDataUpdated) {
                 onDataUpdated('update', ev, id);
             }
         });
- 
+
         scheduler.attachEvent('onEventDeleted', (id, ev) => {
             if (onDataUpdated) {
                 onDataUpdated('delete', ev, id);
@@ -31,6 +37,7 @@ export default class Scheduler extends Component {
         });
         scheduler._$initialized = true;
     }
+
 
     componentDidMount() {
         scheduler.skin = 'material';
@@ -45,23 +52,24 @@ export default class Scheduler extends Component {
         ];
         scheduler.config.hour_date = '%g:%i %A';
         scheduler.xy.scale_width = 70;
- 
+
         this.initSchedulerEvents();
- 
+
         const { events } = this.props;
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
         scheduler.parse(events);
+        changeColorForEachStudent(events)
     }
 
     shouldComponentUpdate(nextProps) {
         return this.props.timeFormatState !== nextProps.timeFormatState;
     }
- 
+
     componentDidUpdate() {
         scheduler.render();
     }
- 
+
     setTimeFormat(state) {
         scheduler.config.hour_date = state ? '%H:%i' : '%g:%i %A';
         scheduler.templates.hour_scale = scheduler.date.date_to_str(scheduler.config.hour_date);
@@ -72,8 +80,8 @@ export default class Scheduler extends Component {
         this.setTimeFormat(timeFormatState);
         return (
             <div
-                ref={ (input) => { this.schedulerContainer = input } }
-                style={ { width: '100%', height: '100%' } }
+                ref={(input) => { this.schedulerContainer = input }}
+                style={{ width: '100%', height: '100%' }}
             ></div>
         );
     }

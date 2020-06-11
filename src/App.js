@@ -10,19 +10,29 @@ const data = [
     start_date: "2020-06-10 6:00",
     end_date: "2020-06-10 8:00",
     text: "C SR03",
-    id: 1
+    id: 1,
+    login: "jiawen"
+  },
+  {
+    start_date: "2020-06-10 6:00",
+    end_date: "2020-06-10 8:00",
+    text: "C SR03",
+    id: 4,
+    login: "linh"
   },
   {
     start_date: "2020-06-10 8:15",
     end_date: "2020-06-10 10:15",
     text: "TD SR03",
-    id: 2
+    id: 2,
+    login: "jiawen"
   },
   {
     start_date: "2020-06-13 10:00",
     end_date: "2020-06-13 18:00",
     text: "Event 2",
-    id: 3
+    id: 3,
+    login: "jiawen"
   },
 ];
 
@@ -88,7 +98,7 @@ class App extends Component {
   }
   render() {
     const { currentTimeFormatState, messages, error, isLoaded, uvs } = this.state;
-    const data = extractUvDateInfo(uvs)
+    // const data = extractUvDateInfo(uvs)
     if (error) {
       return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
