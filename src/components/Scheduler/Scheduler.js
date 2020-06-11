@@ -3,11 +3,19 @@ import 'dhtmlx-scheduler';
 import 'dhtmlx-scheduler/codebase/dhtmlxscheduler_material.css';
 
 const scheduler = window.scheduler;
-const changeColorForEachStudent = events => events.map(event => {
-    if (event.login === "jiawen") {
-        event.color = "green"
-        scheduler.updateEvent(event.id)
-    }
+
+
+const toColorName = index => (
+    {
+        0: "orange",
+        1: "green",
+        2: "red",
+    }[index]
+)
+const changeColorForEachStudent = (events, currentStudents) => events.map(event => {
+    event.color = toColorName(currentStudents.indexOf(event.login))
+    scheduler.updateEvent(event.id)
+
 })
 
 export default class Scheduler extends Component {
@@ -55,11 +63,11 @@ export default class Scheduler extends Component {
 
         this.initSchedulerEvents();
 
-        const { events } = this.props;
+        const { events, currentStudents } = this.props;
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
         scheduler.parse(events);
-        changeColorForEachStudent(events)
+        changeColorForEachStudent(events, currentStudents)
     }
 
     shouldComponentUpdate(nextProps) {

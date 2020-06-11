@@ -50,6 +50,8 @@ const extractUvDateInfo = uvs => uvs.map(uv => ({
   id: uvs.indexOf(uv)
 }))
 
+const getCurrentStudents = data => Array.from(new Set(data.map(elem => elem.login)))
+
 class App extends Component {
   state = {
     currentTimeFormatState: true,
@@ -99,6 +101,7 @@ class App extends Component {
   render() {
     const { currentTimeFormatState, messages, error, isLoaded, uvs } = this.state;
     // const data = extractUvDateInfo(uvs)
+    const currentStudents = getCurrentStudents(data)
     if (error) {
       return <div>Erreur : {error.message}</div>;
     } else if (!isLoaded) {
@@ -109,6 +112,7 @@ class App extends Component {
           <div className="scheduler-container">
             <Scheduler
               events={data}
+              currentStudents={currentStudents}
               timeFormatState={currentTimeFormatState}
               onDataUpdated={this.logDataUpdate}
             />
