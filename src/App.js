@@ -5,9 +5,10 @@ import MessageArea from "./components/MessageArea";
 
 import "./App.css";
 import withFetchData from "./HOC/withFetchData";
-import SchedulerWithData from "./components/Scheduler/SchedulerWithData";
 
+import withUVs from "./HOC/withUVs";
 
+const SchedulerWithData = withFetchData(withUVs(Scheduler))
 
 class App extends Component {
 	state = {
@@ -36,12 +37,9 @@ class App extends Component {
 
 	render() {
 		const { currentTimeFormatState, messages } = this.state;
-
-
 		return (
 			<div>
 				<div className="scheduler-container">
-
 					<SchedulerWithData
 						timeFormatState={currentTimeFormatState}
 						onDataUpdated={this.logDataUpdate}
