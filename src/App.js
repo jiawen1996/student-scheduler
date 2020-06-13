@@ -51,27 +51,40 @@ class App extends Component {
 						<MessageArea messages={messages} />
 					</div>
 					<div class="left">
-						<div class="row">
-							<div class="col"></div>
-							<div class="col">
-								<form>
-									<div class="row">
-
-										<label for="exampleInputEmail1">Login</label>
-									</div>
-									<div class="row">
-										<div class="col">
-											<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+						<div class="left-content">
+							<div class="row">
+								<div class="col">
+									<form>
+										<div class="row">
+											<label for="exampleInputEmail1">Login</label>
 										</div>
-										<div class="col">
-											<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+										<div class="row">
+											<div class="col">
+												<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+											</div>
+											<div class="col">
+												<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+											</div>
 										</div>
-									</div>
-								</form>
+									</form>
 
+								</div>
 							</div>
-							<div class="col"></div>
+							<div class="row" />
+							<div class="row">
+								<label for="exampleInputEmail1">Current students</label>
+							</div>
+							<div class="row">
+								<ul class="list-group">
+									<li class="list-group-item">Cras justo odio</li>
+									<li class="list-group-item">Dapibus ac facilisis in</li>
+									<li class="list-group-item">Morbi leo risus</li>
+									<li class="list-group-item">Porta ac consectetur ac</li>
+									<li class="list-group-item">Vestibulum at eros</li>
+								</ul>
+							</div>
 						</div>
+
 					</div>
 				</div>
 				<footer>

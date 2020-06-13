@@ -22,3 +22,7 @@
   position: relative;
   left: -200px;
 }
+
+.left-content {
+  margin: 0 30px;
+}
