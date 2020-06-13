@@ -10,6 +10,25 @@ export default WrappedComponent => {
             };
         }
         componentDidMount() {
+            // this.props.logins.map(login => {
+            //     fetch(`https://cors-anywhere.herokuapp.com/https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${login}`)
+            //         .then(res => res.json())
+            //         .then(
+            //             (result) => {
+            //                 this.setState({
+            //                     isLoaded: true,
+            //                     data: result,
+            //                     login: login
+            //                 });
+            //             },
+            //             (error) => {
+            //                 this.setState({
+            //                     isLoaded: true,
+            //                     error
+            //                 });
+            //             }
+            //         )
+            // })
             fetch(`https://cors-anywhere.herokuapp.com/https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${this.props.logins[0]}`)
                 .then(res => res.json())
                 .then(
