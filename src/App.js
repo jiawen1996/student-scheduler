@@ -38,15 +38,14 @@ class App extends Component {
 		this.addMessage(message);
 	};
 
-
-	addLogin = (e) => {
+	addLogin = (login) => {
 		this.setState({
-			logins: [...this.state.logins, e.target.value]
+			logins: [...this.state.logins, login]
 		})
 	}
 
 	render() {
-		const { currentTimeFormatState, messages } = this.state;
+		const { currentTimeFormatState, messages, logins } = this.state;
 		return (
 			<div>
 				<header>nihao</header>
@@ -56,6 +55,7 @@ class App extends Component {
 							<SchedulerWithData
 								timeFormatState={currentTimeFormatState}
 								onDataUpdated={this.logDataUpdate}
+								id="schedule"
 							/>
 						</div>
 						<MessageArea messages={messages} />
@@ -65,9 +65,8 @@ class App extends Component {
 							<div class="row">
 								<div class="col">
 									<LoginInput
-										handleClick={this.addLogin}
+										handleClick={(this.addLogin)}
 									/>
-
 								</div>
 							</div>
 							<div class="row" />
@@ -75,7 +74,8 @@ class App extends Component {
 								<label for="exampleInputEmail1">Current students:</label>
 							</div>
 							<div class="row">
-								<StudentsList />
+								{logins}
+								<StudentsList logins={logins} />
 							</div>
 						</div>
 
