@@ -10,14 +10,14 @@ export default WrappedComponent => {
             };
         }
         componentDidMount() {
-            fetch('https://cors-anywhere.herokuapp.com/https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=jbarthel')
+            fetch(`https://cors-anywhere.herokuapp.com/https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${this.props.logins[0]}`)
                 .then(res => res.json())
                 .then(
                     (result) => {
                         this.setState({
                             isLoaded: true,
                             data: result,
-                            login: "jbarthel"
+                            login: this.props.logins[0]
                         });
                     },
                     (error) => {

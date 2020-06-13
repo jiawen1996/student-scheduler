@@ -18,7 +18,7 @@ class App extends Component {
 		messages: [],
 		error: null,
 		isLoaded: false,
-		logins: [],
+		logins: ["lyujiawe"],
 		uvs: []
 	};
 	addMessage(message) {
@@ -48,7 +48,7 @@ class App extends Component {
 		const { currentTimeFormatState, messages, logins } = this.state;
 		return (
 			<div>
-				<header>nihao</header>
+				<header>SR03</header>
 				<div class="clearfix wrapper">
 					<div class="main">
 						<div className="scheduler-container">
@@ -56,6 +56,7 @@ class App extends Component {
 								timeFormatState={currentTimeFormatState}
 								onDataUpdated={this.logDataUpdate}
 								id="schedule"
+								logins={logins}
 							/>
 						</div>
 						<MessageArea messages={messages} />
