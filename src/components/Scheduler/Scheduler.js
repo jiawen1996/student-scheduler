@@ -14,8 +14,8 @@ const toColorName = index => (
         4: "grey"
     }[index]
 )
-const changeColorForEachStudent = (events, currentStudents) => events.map(event => {
-    event.color = toColorName(currentStudents.indexOf(event.login))
+const changeColorForEachStudent = (events, logins) => events.map(event => {
+    event.color = toColorName(logins.indexOf(event.login))
     event.text = event.text + "\n" + event.login
     scheduler.updateEvent(event.id)
 
@@ -66,11 +66,11 @@ export default class Scheduler extends Component {
 
         this.initSchedulerEvents();
 
-        const { events, currentStudents } = this.props;
+        const { events, logins } = this.props;
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
         scheduler.parse(events);
-        changeColorForEachStudent(events, currentStudents)
+        changeColorForEachStudent(events, logins)
     }
 
     shouldComponentUpdate(nextProps) {

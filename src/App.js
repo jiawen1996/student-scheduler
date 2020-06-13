@@ -18,7 +18,7 @@ class App extends Component {
 		messages: [],
 		error: null,
 		isLoaded: false,
-		logins: ["lyujiawe"],
+		logins: ["lyujiawe", "jbarthel"],
 		uvs: []
 	};
 	addMessage(message) {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const data = [
+const demoData = [
     {
         start_date: "2020-06-10 6:00",
         end_date: "2020-06-10 8:00",
@@ -30,6 +30,11 @@ const data = [
         login: "jiawen"
     },
 ];
+
+const demoLogins = [
+    "jiawen",
+    "linh"
+]
 
 const toDays = dayString => (
     {
@@ -74,7 +79,7 @@ const getAllDays = (term, day) => {
     return days
 }
 
-const extractUvDateInfo = (uvs, login) => {
+const extractUvDateInfo = (uvs) => {
     let uvInAllTerm = []
     uvs.map(uv => {
         const daysInTerm = getAllDays(semestreP20, toDays(uv.day))
@@ -85,7 +90,7 @@ const extractUvDateInfo = (uvs, login) => {
                 end_date: day + " " + uv.end,
                 text: uv.uv,
                 id: uvInAllTerm.length + 1,
-                login: login
+                login: uv.login
             }
             ]
         })
@@ -95,13 +100,12 @@ const extractUvDateInfo = (uvs, login) => {
 
 
 
-const getCurrentStudents = data => Array.from(new Set(data.map(elem => elem.login)))
-
 const withUVs = WrappedComponent => props => {
-    const { data, login } = props;
-    const uvs = extractUvDateInfo(data, login)
-    const currentStudents = getCurrentStudents(uvs)
-    return <WrappedComponent events={uvs} currentStudents={currentStudents} {...props} />;
+    const { data, logins } = props;
+    const uvs = extractUvDateInfo(data)
+    console.log("uvs: ", uvs)
+
+    return <WrappedComponent events={demoData} logins={demoLogins} {...props} />;
 
 
 }
