@@ -74,7 +74,6 @@ class App extends Component {
 								<label for="exampleInputEmail1">Current students:</label>
 							</div>
 							<div class="row">
-								{logins}
 								<StudentsList logins={logins} />
 							</div>
 						</div>
