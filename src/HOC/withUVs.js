@@ -99,7 +99,6 @@ const getCurrentStudents = data => Array.from(new Set(data.map(elem => elem.logi
 
 const withUVs = WrappedComponent => props => {
     const { data, login } = props;
-    console.log("withUVs: ", data)
     const uvs = extractUvDateInfo(data, login)
     const currentStudents = getCurrentStudents(uvs)
     return <WrappedComponent events={uvs} currentStudents={currentStudents} {...props} />;

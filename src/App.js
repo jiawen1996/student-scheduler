@@ -39,13 +39,44 @@ class App extends Component {
 		const { currentTimeFormatState, messages } = this.state;
 		return (
 			<div>
-				<div className="scheduler-container">
-					<SchedulerWithData
-						timeFormatState={currentTimeFormatState}
-						onDataUpdated={this.logDataUpdate}
-					/>
+				<header>nihao</header>
+				<div class="clearfix wrapper">
+					<div class="main">
+						<div className="scheduler-container">
+							<SchedulerWithData
+								timeFormatState={currentTimeFormatState}
+								onDataUpdated={this.logDataUpdate}
+							/>
+						</div>
+						<MessageArea messages={messages} />
+					</div>
+					<div class="left">
+						<div class="row">
+							<div class="col"></div>
+							<div class="col">
+								<form>
+									<div class="row">
+
+										<label for="exampleInputEmail1">Login</label>
+									</div>
+									<div class="row">
+										<div class="col">
+											<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+										</div>
+										<div class="col">
+											<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+										</div>
+									</div>
+								</form>
+
+							</div>
+							<div class="col"></div>
+						</div>
+					</div>
 				</div>
-				<MessageArea messages={messages} />
+				<footer>
+					UTC SR03 P20
+				</footer>
 			</div >
 		);
 
