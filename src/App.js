@@ -7,6 +7,8 @@ import "./App.css";
 import withFetchData from "./HOC/withFetchData";
 
 import withUVs from "./HOC/withUVs";
+import { LoginInput } from "./components/LoginInput";
+import { StudentsList } from "./components/StudentsList";
 
 const SchedulerWithData = withFetchData(withUVs(Scheduler))
 
@@ -16,6 +18,7 @@ class App extends Component {
 		messages: [],
 		error: null,
 		isLoaded: false,
+		logins: [],
 		uvs: []
 	};
 	addMessage(message) {
@@ -34,6 +37,13 @@ class App extends Component {
 		const message = `event ${action}: ${id} ${text}`;
 		this.addMessage(message);
 	};
+
+
+	addLogin = (e) => {
+		this.setState({
+			logins: [...this.state.logins, e.target.value]
+		})
+	}
 
 	render() {
 		const { currentTimeFormatState, messages } = this.state;
@@ -54,34 +64,18 @@ class App extends Component {
 						<div class="left-content">
 							<div class="row">
 								<div class="col">
-									<form>
-										<div class="row">
-											<label for="exampleInputEmail1">Login</label>
-										</div>
-										<div class="row">
-											<div class="col">
-												<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-											</div>
-											<div class="col">
-												<button type="submit" class="btn btn-primary btn-sm">Submit</button>
-											</div>
-										</div>
-									</form>
+									<LoginInput
+										handleClick={this.addLogin}
+									/>
 
 								</div>
 							</div>
 							<div class="row" />
 							<div class="row">
-								<label for="exampleInputEmail1">Current students</label>
+								<label for="exampleInputEmail1">Current students:</label>
 							</div>
 							<div class="row">
-								<ul class="list-group">
-									<li class="list-group-item">Cras justo odio</li>
-									<li class="list-group-item">Dapibus ac facilisis in</li>
-									<li class="list-group-item">Morbi leo risus</li>
-									<li class="list-group-item">Porta ac consectetur ac</li>
-									<li class="list-group-item">Vestibulum at eros</li>
-								</ul>
+								<StudentsList />
 							</div>
 						</div>
 
