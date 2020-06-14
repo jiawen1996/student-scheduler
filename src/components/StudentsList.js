@@ -7,7 +7,7 @@ export const StudentsList = (props) => {
             <>
                 <ul class="list-group" id="studentList">
                     {
-                        logins.map(login => (<li class="list-group-item">
+                        logins.map(login => (<li class="list-group-item" key={login}>
                             {
                                 login
                             }

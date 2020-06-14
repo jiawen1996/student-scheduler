@@ -14,12 +14,13 @@ const toColorName = index => (
         4: "grey"
     }[index]
 )
-const changeColorForEachStudent = (events, logins) => events.map(event => {
-    event.color = toColorName(logins.indexOf(event.login))
-    event.text = event.text + "\n" + event.login
-    scheduler.updateEvent(event.id)
+const changeColorForEachStudent = (events, logins) =>
+    events.map(event => {
+        event.color = toColorName(logins.indexOf(event.login))
+        event.text = event.text + "\n" + event.login
+        scheduler.updateEvent(event.id)
 
-})
+    })
 
 export default class Scheduler extends Component {
     initSchedulerEvents() {
