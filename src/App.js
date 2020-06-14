@@ -9,18 +9,28 @@ import withFetchData from "./HOC/withFetchData";
 import withUVs from "./HOC/withUVs";
 import { LoginInput } from "./components/LoginInput";
 import { StudentsList } from "./components/StudentsList";
+import LocalStorageManager from "./utils/LocalStorageManager"
 
 const SchedulerWithData = withFetchData(withUVs(Scheduler))
 
 class App extends Component {
-	state = {
-		currentTimeFormatState: true,
-		messages: [],
-		error: null,
-		isLoaded: false,
-		logins: ["lyujiawe", "jbarthel"],
-		uvs: []
-	};
+	constructor(props) {
+		super(props)
+
+		const storage = new LocalStorageManager()
+		storage.set("logins", ["lyujiawe", "jbarthel"])
+		let logins = storage.logins()
+
+
+		this.state = {
+			currentTimeFormatState: true,
+			messages: [],
+			error: null,
+			isLoaded: false,
+			logins: logins,
+			uvs: []
+		};
+	}
 	addMessage(message) {
 		const maxLogLength = 5;
 		const newMessage = { message };

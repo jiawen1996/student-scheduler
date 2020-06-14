@@ -61,7 +61,7 @@ const getAllDays = (term, day) => {
             days = [...days, currentDay]
         }
         let dayArr = currentDay.split("-")
-        if ((dayArr[2] == 30 && dayArr[1] % 2 == 0) || (dayArr[2] == 31 && dayArr[1] % 2 == 1)) {
+        if ((dayArr[2] === 30 && dayArr[1] % 2 === 0) || (dayArr[2] === 31 && dayArr[1] % 2 === 1)) {
             dayArr[2] = 1
             dayArr[1]++
         } else {

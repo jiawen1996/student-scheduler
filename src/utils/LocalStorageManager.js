@@ -20,18 +20,10 @@ class LocalStorageManager {
         return this.storage.removeItem(key)
     }
 
-    loggedUser() {
-        return this.get('loggedUser')
+    logins() {
+        return this.get('logins')
     }
 
-
-    userToken() {
-        return this.get('userToken')
-    }
-
-    registerDate() {
-        return this.get('registerDate')
-    }
 }
 
 export default LocalStorageManager
