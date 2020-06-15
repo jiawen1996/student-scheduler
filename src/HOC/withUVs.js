@@ -61,7 +61,7 @@ const getAllDays = (term, day) => {
             days = [...days, currentDay]
         }
         let dayArr = currentDay.split("-")
-        if ((dayArr[2] === 30 && dayArr[1] % 2 === 0) || (dayArr[2] === 31 && dayArr[1] % 2 === 1)) {
+        if ((dayArr[2] == 30 && dayArr[1] % 2 == 0) || (dayArr[2] == 31 && dayArr[1] % 2 == 1)) {
             dayArr[2] = 1
             dayArr[1]++
         } else {
@@ -103,9 +103,10 @@ const extractUvDateInfo = (uvs) => {
 const withUVs = WrappedComponent => props => {
     const { data } = props;
     const uvs = extractUvDateInfo(data)
+    console.log("data: ", data)
     console.log("uvs: ", uvs)
 
-    return <WrappedComponent events={demoData} {...props} />;
+    return <WrappedComponent events={uvs} {...props} />;
 
 
 }

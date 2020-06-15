@@ -14,18 +14,23 @@ export default WrappedComponent => {
             const fetchPromises = this.props.logins.map(login => {
                 return fetch(`https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${login}`)
                     .then(res => res.json())
+                    .then(res =>
+                        (res.map(elem => ({
+                            login: login,
+                            ...elem
+                        })))
+                    )
             })
 
             Promise.all(fetchPromises).then(
                 (results) => {
-                    // this.setState({
-                    //     isLoaded: true,
-                    //     data: this.state.data.concat(result.map(elem => ({
-                    //         login: login,
-                    //         ...elem
-                    //     }))),
-                    // });
-                    console.log("promise: ", results)
+                    let allDatas = []
+                    results.map(result => result.map(elem => allDatas.push(elem)))
+                    console.log(results[0])
+                    this.setState({
+                        data: allDatas,
+                        isLoaded: true
+                    })
                 },
                 (error) => {
                     this.setState({
