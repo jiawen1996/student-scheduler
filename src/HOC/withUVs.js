@@ -103,8 +103,6 @@ const extractUvDateInfo = (uvs) => {
 const withUVs = WrappedComponent => props => {
     const { data } = props;
     const uvs = extractUvDateInfo(data)
-    console.log("uvs: ", uvs)
-
     return <WrappedComponent events={uvs} {...props} />;
 
 

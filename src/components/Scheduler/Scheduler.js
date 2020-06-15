@@ -14,13 +14,16 @@ const toColorName = index => (
         4: "grey"
     }[index]
 )
-const changeColorForEachStudent = (events, logins) =>
+const changeColorForEachStudent = (events, logins) => {
+    console.log(logins)
+
     events.map(event => {
         event.color = toColorName(logins.indexOf(event.login))
         event.text = event.text + "\n" + event.login
         scheduler.updateEvent(event.id)
 
     })
+}
 
 export default class Scheduler extends Component {
     initSchedulerEvents() {
@@ -76,13 +79,21 @@ export default class Scheduler extends Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        return this.props.timeFormatState !== nextProps.timeFormatState;
+        console.log("logins", nextProps.logins)
+        console.log("events", nextProps.events)
+        console.log("一样吗？", this.props.events.length !== nextProps.events.length)
+        return this.props.events.length !== nextProps.events.length;
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.logins !== this.props.logins) {
-            scheduler.render();
-        }
+    componentDidUpdate() {
+        console.log("hei")
+        const { events, logins } = this.props
+        scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
+        scheduler.clearAll();
+        console.log("要更新的账号", logins)
+        console.log("要更新的events", events)
+        scheduler.parse(events);
+        changeColorForEachStudent(events, logins)
     }
 
     setTimeFormat(state) {
