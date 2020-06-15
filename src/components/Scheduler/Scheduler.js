@@ -68,6 +68,7 @@ export default class Scheduler extends Component {
         this.initSchedulerEvents();
 
         const { events, logins } = this.props;
+        console.log("logins in scheduler:", logins)
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
         scheduler.parse(events);
@@ -78,8 +79,10 @@ export default class Scheduler extends Component {
         return this.props.timeFormatState !== nextProps.timeFormatState;
     }
 
-    componentDidUpdate() {
-        scheduler.render();
+    componentDidUpdate(prevProps) {
+        if (prevProps.logins !== this.props.logins) {
+            scheduler.render();
+        }
     }
 
     setTimeFormat(state) {

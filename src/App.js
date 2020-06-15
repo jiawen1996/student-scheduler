@@ -18,7 +18,7 @@ class App extends Component {
 		super(props)
 
 		const storage = new LocalStorageManager()
-		storage.set("logins", ["lyujiawe", "jbarthel"])
+		storage.set("logins", ["lyujiawe", "jbarthel", "yuruoshu"])
 		let logins = storage.logins()
 
 

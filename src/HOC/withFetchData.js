@@ -1,5 +1,8 @@
 import React from 'react'
 
+
+
+
 export default WrappedComponent => {
     return class extends React.Component {
         constructor(props) {
@@ -10,7 +13,8 @@ export default WrappedComponent => {
                 data: []
             };
         }
-        componentDidMount() {
+
+        handleFetchPromises = () => {
             const fetchPromises = this.props.logins.map(login => {
                 return fetch(`https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${login}`)
                     .then(res => res.json())
@@ -26,7 +30,6 @@ export default WrappedComponent => {
                 (results) => {
                     let allDatas = []
                     results.map(result => result.map(elem => allDatas.push(elem)))
-                    console.log(results[0])
                     this.setState({
                         data: allDatas,
                         isLoaded: true
@@ -40,6 +43,15 @@ export default WrappedComponent => {
                 }
             )
 
+        }
+        componentDidMount() {
+            this.handleFetchPromises()
+        }
+
+        componentDidUpdate(prevProps) {
+            if (prevProps.logins !== this.props.logins) {
+                this.handleFetchPromises();
+            }
         }
 
         render() {
