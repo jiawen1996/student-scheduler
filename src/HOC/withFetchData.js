@@ -12,7 +12,7 @@ export default WrappedComponent => {
         }
         componentDidMount() {
             const fetchPromises = this.props.logins.map(login => {
-                return fetch(`https://cors-anywhere.herokuapp.com/https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${login}`)
+                return fetch(`https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${login}`)
                     .then(res => res.json())
             })
 
