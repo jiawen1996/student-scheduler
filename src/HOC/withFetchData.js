@@ -16,7 +16,7 @@ export default WrappedComponent => {
 
         handleFetchPromises = () => {
             const fetchPromises = this.props.logins.map(login => {
-                return fetch(`https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${login}`)
+                return fetch(`https://corsanywhere.herokuapp.com/https://webapplis.utc.fr/Edt_ent_rest/myedt/result/?login=${login}`)
                     .then(res => res.json())
                     .then(res =>
                         (res.map(elem => ({

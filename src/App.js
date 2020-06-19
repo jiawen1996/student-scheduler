@@ -54,6 +54,12 @@ class App extends Component {
 		})
 	}
 
+	deleteLogin = (login) => {
+		this.setState({
+			logins: this.state.logins.filter(elem => elem !== login)
+		})
+	}
+
 	render() {
 		const { currentTimeFormatState, messages, logins } = this.state;
 		return (
@@ -85,7 +91,10 @@ class App extends Component {
 								<label for="exampleInputEmail1">Current students:</label>
 							</div>
 							<div class="row">
-								<StudentsList logins={logins} />
+								<StudentsList
+									logins={logins}
+									handleClick={(this.deleteLogin)}
+								/>
 							</div>
 						</div>
 

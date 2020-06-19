@@ -28,8 +28,7 @@ export const LoginInput = (props) => {
                             onClick={(e) => {
                                 e.preventDefault();
                                 props.handleClick(inputValue.value)
-                            }
-                            }
+                            }}
                         >
                             Submit
                         </button>
