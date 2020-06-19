@@ -60,6 +60,11 @@ class App extends Component {
 		})
 	}
 
+	showDeleteModal = (event) => {
+		event.preventDefault();
+
+	}
+
 	render() {
 		const { currentTimeFormatState, messages, logins } = this.state;
 		return (

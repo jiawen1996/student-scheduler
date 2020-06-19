@@ -1,4 +1,5 @@
 import React from 'react';
+import ButtonWithModal from './ButtonWithModal';
 
 export const StudentsList = (props) => {
     const { logins } = props
@@ -8,30 +9,23 @@ export const StudentsList = (props) => {
                 <ul class="list-group" id="studentList">
                     {
                         logins.map(login => (
-                            <div class="row">
+                            <div class="row" key={login}>
                                 <li
                                     class="list-group-item"
-                                    key={login}
                                 >
                                     {
                                         login
                                     }
                                 </li>
-                                <button
-                                    type="button"
-                                    class="close"
-                                    aria-label="Close"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        props.handleClick(login)
-                                    }}
-                                >
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+                                <ButtonWithModal
+                                    login={login}
+                                    handleClick={props.handleClick}
+                                />
                             </div>
+
                         ))
                     }
-                </ul>
+                </ul >
             </>
         )
     else return (
