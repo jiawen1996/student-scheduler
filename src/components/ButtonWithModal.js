@@ -25,6 +25,7 @@ export default (props) => {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
+                    <Modal.Title>Do you want to delete this user?</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>Comfirmer à supprimer</Modal.Body>
                 <Modal.Footer>

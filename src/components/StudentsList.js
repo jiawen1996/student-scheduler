@@ -6,22 +6,22 @@ export const StudentsList = (props) => {
     if (logins)
         return (
             <>
-                <ul class="list-group" id="studentList">
+                <ul className="list-group" id="studentList">
                     {
                         logins.map(login => (
-                            <div class="row" key={login}>
-                                <li
-                                    class="list-group-item"
-                                >
-                                    {
-                                        login
-                                    }
-                                </li>
+                            <li
+                                className="list-group-item"
+                                key={login}
+                            >
+                                {
+                                    login
+                                }
                                 <ButtonWithModal
+                                    className="button-modal"
                                     login={login}
                                     handleClick={props.handleClick}
                                 />
-                            </div>
+                            </li>
 
                         ))
                     }
@@ -29,8 +29,8 @@ export const StudentsList = (props) => {
             </>
         )
     else return (
-        <ul class="list-group">
-            <li class="list-group-item">null</li>
+        <ul className="list-group">
+            <li className="list-group-item">null</li>
         </ul>
     )
 }

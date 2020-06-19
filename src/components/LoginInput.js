@@ -10,21 +10,21 @@ export const LoginInput = (props) => {
     return (
         <>
             <form>
-                <div class="row">
-                    <label for="exampleInputEmail1">Login</label>
+                <div className="row">
+                    <label htmlFor="exampleInputEmail1">Login</label>
                 </div>
-                <div class="row">
-                    <div class="col">
+                <div className="row">
+                    <div className="col">
                         <input
-                            class="form-control"
+                            className="form-control"
                             ref={input => inputValue = input}
                             id="exampleInputEmail1"
                         />
                     </div>
-                    <div class="col">
+                    <div className="col">
                         <button
                             type="submit"
-                            class="btn btn-primary btn-sm"
+                            className="btn btn-primary btn-sm"
                             onClick={(e) => {
                                 e.preventDefault();
                                 props.handleClick(inputValue.value)

@@ -70,8 +70,8 @@ class App extends Component {
 		return (
 			<div>
 				<header>SR03</header>
-				<div class="clearfix wrapper">
-					<div class="main">
+				<div className="clearfix wrapper">
+					<div className="main">
 						<div className="scheduler-container">
 							<SchedulerWithData
 								timeFormatState={currentTimeFormatState}
@@ -82,20 +82,20 @@ class App extends Component {
 						</div>
 						<MessageArea messages={messages} />
 					</div>
-					<div class="left">
-						<div class="left-content">
-							<div class="row">
-								<div class="col">
+					<div className="left">
+						<div className="left-content">
+							<div className="row">
+								<div className="col">
 									<LoginInput
 										handleClick={(this.addLogin)}
 									/>
 								</div>
 							</div>
-							<div class="row" />
-							<div class="row">
-								<label for="exampleInputEmail1">Current students:</label>
+							<div className="row" />
+							<div className="row">
+								<label htmlFor="exampleInputEmail1">Current students:</label>
 							</div>
-							<div class="row">
+							<div className="row">
 								<StudentsList
 									logins={logins}
 									handleClick={(this.deleteLogin)}
