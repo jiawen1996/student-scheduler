@@ -7,25 +7,57 @@ const scheduler = window.scheduler;
 
 const toColorName = index => (
     {
-        0: "orange",
-        1: "green",
-        2: "red",
-        3: "blue",
-        4: "grey"
+        0: "#df972f", // orange
+        1: "#3a5c34", // green
+        2: "#1c3c64", // blue
+        3: "#fc8184", // rose
+        4: "#9b641b", // brown
+        5: "#821605", // red
+        6: "#ab7350", // dark rose
+        7: "#e8b045", // yellow
+        8: "6c6c8c", //purple
+        9: "#cab08e", //beige
+        10: "#6284a4", //light blue
+        11: "#634b1c" 
     }[index]
 )
+
 const changeColorForEachStudent = (events, logins) => {
     console.log(logins)
 
+    uvs = getUVs(events)
+
     events.map(event => {
-        event.color = toColorName(logins.indexOf(event.login))
+        let index = 0
+        if (uvs.length != 0) {
+            index = uvs.indexOf(event.text) % 8;
+        }
+        
+        event.color = toColorName(index)
+        console.log("uv ", event.text)
+        console.log("uv index : ", index)
         event.text = event.text + "\n" + event.login
         scheduler.updateEvent(event.id)
 
     })
 }
 
+function getUVs(events) {
+    let uvs = [];
+
+    events.map(event => {
+        if (uvs.indexOf(event.text) == -1) {
+            uvs.push(event.text)
+        }
+    });
+
+    console.log("uvs in scheduler:", uvs);
+    
+    return uvs;
+}
+
 export default class Scheduler extends Component {
+
     initSchedulerEvents() {
         if (scheduler._$initialized) {
             return;
@@ -55,7 +87,7 @@ export default class Scheduler extends Component {
 
 
     componentDidMount() {
-        scheduler.skin = 'terrace';
+        scheduler.skin = 'material';
         scheduler.config.header = [
             'day',
             'week',
@@ -76,8 +108,9 @@ export default class Scheduler extends Component {
         console.log("logins in scheduler:", logins)
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
+        this.getUVs(events);
         scheduler.parse(events);
-        changeColorForEachStudent(events, logins)
+        changeColorForEachStudent(events, logins, this.state.uvs);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -88,8 +121,9 @@ export default class Scheduler extends Component {
         const { events, logins } = this.props
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
+        this.getUVs(events);
         scheduler.parse(events);
-        changeColorForEachStudent(events, logins)
+        changeColorForEachStudent(events, logins, this.state.uvs);
     }
 
     setTimeFormat(state) {

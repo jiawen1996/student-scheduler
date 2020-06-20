@@ -8,6 +8,7 @@
   clear: both;
 
 }
+
 .main {
   float: left;
   width: 100%;
@@ -36,5 +37,6 @@
 
 .main-container {
   padding: 5px 0 5px 200px;
+  margin: 0 5px 0 15px;
   overflow: hidden;
 }

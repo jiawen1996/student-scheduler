@@ -16,7 +16,7 @@ class App extends Component {
 		super(props)
 
 		const storage = new LocalStorageManager()
-		storage.set("logins", ["nguyetra", "lyujiawe", "jbarthel"])
+		storage.set("logins", ["nguyetra", "lyujiawe"])
 		let logins = storage.logins()
 
 
@@ -26,7 +26,6 @@ class App extends Component {
 			error: null,
 			isLoaded: false,
 			logins: logins,
-			uvs: []
 		};
 	}
 
@@ -53,7 +52,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { currentTimeFormatState, logins } = this.state;
+		const { currentTimeFormatState, logins, uvs } = this.state;
 		return (
 			<div>
 				<header className="App-header">
