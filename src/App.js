@@ -5,8 +5,8 @@ import "./App.css";
 import withFetchData from "./HOC/withFetchData";
 
 import withUVs from "./HOC/withUVs";
-import { LoginInput } from "./components/LoginInput";
-import { StudentsList } from "./components/StudentsList";
+import { LoginInput } from "./components/User/LoginInput";
+import { StudentsList } from "./components/User/StudentsList";
 import LocalStorageManager from "./utils/LocalStorageManager"
 
 const SchedulerWithData = withFetchData(withUVs(Scheduler))
@@ -80,35 +80,34 @@ class App extends Component {
 						</div>
 					</div>
 					<div className="left">
-
-
-						<button
-							type="submit"
-							className="btn btn-primary btn-sm"
-							onClick={this.showByStudent}
-						>
-							Show by student
-                        	</button>
-						<button
-							type="submit"
-							className="btn btn-primary btn-sm"
-							onClick={this.showByClasses}
-						>
-							Show by class
-                        	</button>
-
-
-						<LoginInput
-							handleClick={(this.addLogin)}
-						/>
+						<div>
+							<LoginInput
+								handleClick={(this.addLogin)}
+							/>
+						</div>
 						<div>
 							<label htmlFor="exampleInputEmail1">Current students:</label>
+							<StudentsList
+								logins={logins}
+								handleClick={(this.deleteLogin)}
+							/>
 						</div>
-						<StudentsList
-							logins={logins}
-							handleClick={(this.deleteLogin)}
-
-						/>
+						<div className="display-btn">
+							<button
+								type="submit"
+								className="btn btn-primary btn-sm"
+								onClick={this.showByStudent}
+							>
+								Show by student
+							</button>
+							<button
+								type="submit"
+								className="btn btn-primary btn-sm"
+								onClick={this.showByClasses}
+							>
+								Show by class
+            	</button>
+						</div>
 					</div>
 				</div>
 				<footer className="App-footer">
