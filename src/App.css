@@ -10,17 +10,17 @@
 }
 .main {
   float: left;
-  width: 75%;
-  margin-top: 1%;
+  width: 100%;
 }
 .left {
-  margin-left: 3%;
-  margin-top: 1%;
+  float: left;
+  width: 200px;
+  margin-left: -100%;
+  position: relative;
+  left: -200px;
 }
 
-.left-content {
-  margin: 0 30px;
-}
+
 
 .App-header, .App-footer {
   background-color: #282c34;
@@ -35,5 +35,6 @@
 }
 
 .main-container {
-  padding: 5px;
+  padding: 5px 0 5px 200px;
+  overflow: hidden;
 }
