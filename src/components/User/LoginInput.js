@@ -2,6 +2,11 @@ import React from 'react';
 
 export const LoginInput = (props) => {
     let inputValue;
+
+    function validateForm(login) {
+        return login.length > 0;
+    }
+
     return (
         <>
             <form>
@@ -20,7 +25,11 @@ export const LoginInput = (props) => {
                             className="btn btn-primary btn-sm"
                             onClick={(e) => {
                                 e.preventDefault();
-                                props.handleClick(inputValue.value)
+                                if (validateForm(inputValue.value)){
+                                    props.handleClick(inputValue.value)
+                                } else {
+                                    alert("Login empty")
+                                }    
                             }}
                         >
                             Add

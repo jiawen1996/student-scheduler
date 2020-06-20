@@ -88,7 +88,7 @@ const extractUvDateInfo = (uvs) => {
             {
                 start_date: day + " " + uv.begin,
                 end_date: day + " " + uv.end,
-                text: uv.uv,
+                text: uv.type + " " + uv.uv,
                 id: uvInAllTerm.length + 1,
                 login: uv.login
             }

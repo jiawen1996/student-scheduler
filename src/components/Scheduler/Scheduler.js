@@ -32,7 +32,9 @@ const changeColorForEachStudent = (events, logins) => {
 
 const changeColorForEachClass = (events, classes) => {
     events.map(event => {
-        event.color = toColorName(classes.indexOf(event.text))
+        let className = []
+        className = event.text.split(" ")
+        event.color = toColorName(classes.indexOf(className[1]))
         event.text = event.text + "\n" + event.login
         scheduler.updateEvent(event.id)
     })
@@ -41,35 +43,6 @@ const changeColorForEachClass = (events, classes) => {
 const changeColor = isByStudent => (events, logins, classes) => isByStudent ? changeColorForEachStudent(events, logins) : changeColorForEachClass(events, classes)
 
 export default class Scheduler extends Component {
-
-
-    initSchedulerEvents() {
-        if (scheduler._$initialized) {
-            return;
-        }
-
-        const onDataUpdated = this.props.onDataUpdated;
-
-        scheduler.attachEvent('onEventAdded', (id, ev) => {
-            if (onDataUpdated) {
-                onDataUpdated('create', ev, id);
-            }
-        });
-
-        scheduler.attachEvent('onEventChanged', (id, ev) => {
-            if (onDataUpdated) {
-                onDataUpdated('update', ev, id);
-            }
-        });
-
-        scheduler.attachEvent('onEventDeleted', (id, ev) => {
-            if (onDataUpdated) {
-                onDataUpdated('delete', ev, id);
-            }
-        });
-        scheduler._$initialized = true;
-    }
-
 
     componentDidMount() {
         scheduler.skin = 'material';
@@ -87,13 +60,11 @@ export default class Scheduler extends Component {
         scheduler.config.hour_date = '%g:%i %A';
         scheduler.xy.scale_width = 60;
 
-        this.initSchedulerEvents();
-
         const { events, logins, isByStudent, classes } = this.props;
-        scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
+        scheduler.init(this.schedulerContainer, new Date());
         scheduler.clearAll();
         scheduler.parse(events);
-        console.log(this.props.isByStudent)
+
         changeColor(isByStudent)(events, logins, classes)
     }
 
@@ -103,7 +74,7 @@ export default class Scheduler extends Component {
 
     componentDidUpdate() {
         const { events, logins, classes, isByStudent } = this.props
-        scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
+        scheduler.init(this.schedulerContainer, new Date());
         scheduler.clearAll();
         scheduler.parse(events);
         changeColor(isByStudent)(events, logins, classes)

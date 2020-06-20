@@ -16,13 +16,12 @@ class App extends Component {
 		super(props)
 
 		const storage = new LocalStorageManager()
-		storage.set("logins", ["nguyetra", "lyujiawe"])
+		storage.set("logins", ["lyujiawe"])
 		let logins = storage.logins()
 
 
 		this.state = {
 			currentTimeFormatState: true,
-			messages: [],
 			error: null,
 			isLoaded: false,
 			logins: logins,

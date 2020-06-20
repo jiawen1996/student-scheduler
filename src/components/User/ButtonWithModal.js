@@ -27,10 +27,10 @@ export default (props) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Do you want to delete this user?</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Comfirmer à supprimer</Modal.Body>
+                <Modal.Body>Confirm to delete</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Annuler
+                        Cancle
                     </Button>
                     <Button
                         variant="primary"
