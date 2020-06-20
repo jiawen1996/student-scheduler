@@ -23,7 +23,7 @@ export const LoginInput = (props) => {
                                 props.handleClick(inputValue.value)
                             }}
                         >
-                            Submit
+                            Add
                         </button>
                     </div>
                 </div>
