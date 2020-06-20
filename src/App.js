@@ -26,6 +26,7 @@ class App extends Component {
 			error: null,
 			isLoaded: false,
 			logins: logins,
+			isByStudent: false
 		};
 	}
 
@@ -46,13 +47,21 @@ class App extends Component {
 		})
 	}
 
-	showDeleteModal = (event) => {
-		event.preventDefault();
-
+	showByStudent = (e) => {
+		e.preventDefault();
+		this.setState({
+			isByStudent: true
+		})
+	}
+	showByClasses = (e) => {
+		e.preventDefault();
+		this.setState({
+			isByStudent: false
+		})
 	}
 
 	render() {
-		const { currentTimeFormatState, logins, uvs } = this.state;
+		const { currentTimeFormatState, logins, isByStudent } = this.state;
 		return (
 			<div>
 				<header className="App-header">
@@ -66,10 +75,29 @@ class App extends Component {
 								onDataUpdated={this.logDataUpdate}
 								id="schedule"
 								logins={logins}
+								isByStudent={isByStudent}
 							/>
 						</div>
 					</div>
 					<div className="left">
+
+
+						<button
+							type="submit"
+							className="btn btn-primary btn-sm"
+							onClick={this.showByStudent}
+						>
+							Show by student
+                        	</button>
+						<button
+							type="submit"
+							className="btn btn-primary btn-sm"
+							onClick={this.showByClasses}
+						>
+							Show by class
+                        	</button>
+
+
 						<LoginInput
 							handleClick={(this.addLogin)}
 						/>
@@ -79,13 +107,14 @@ class App extends Component {
 						<StudentsList
 							logins={logins}
 							handleClick={(this.deleteLogin)}
+
 						/>
 					</div>
 				</div>
 				<footer className="App-footer">
 					UTC SR03 P20 - Lyu Jiawen - Linh Nguyen
 				</footer>
-			</div>
+			</div >
 		);
 
 	}

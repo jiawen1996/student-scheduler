@@ -38,23 +38,10 @@ const changeColorForEachClass = (events, classes) => {
     })
 }
 
-
-
-function getUVs(events) {
-    let uvs = [];
-
-    events.map(event => {
-        if (uvs.indexOf(event.text) == -1) {
-            uvs.push(event.text)
-        }
-    });
-
-    console.log("uvs in scheduler:", uvs);
-
-    return uvs;
-}
+const changeColor = isByStudent => (events, logins, classes) => isByStudent ? changeColorForEachStudent(events, logins) : changeColorForEachClass(events, classes)
 
 export default class Scheduler extends Component {
+
 
     initSchedulerEvents() {
         if (scheduler._$initialized) {
@@ -102,25 +89,24 @@ export default class Scheduler extends Component {
 
         this.initSchedulerEvents();
 
-        const { events, logins } = this.props;
-        console.log("logins in scheduler:", logins)
+        const { events, logins, isByStudent, classes } = this.props;
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
         scheduler.parse(events);
-        changeColorForEachStudent(events, logins);
+        console.log(this.props.isByStudent)
+        changeColor(isByStudent)(events, logins, classes)
     }
 
     shouldComponentUpdate(nextProps) {
-        return this.props.events.length !== nextProps.events.length;
+        return (this.props.events.length !== nextProps.events.length) || (this.props.isByStudent !== nextProps.isByStudent);
     }
 
     componentDidUpdate() {
-        const { events, logins, classes } = this.props
+        const { events, logins, classes, isByStudent } = this.props
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
         scheduler.parse(events);
-        // changeColorForEachStudent(events, logins);
-        changeColorForEachClass(events, classes)
+        changeColor(isByStudent)(events, logins, classes)
     }
 
     setTimeFormat(state) {

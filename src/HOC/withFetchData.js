@@ -56,6 +56,7 @@ export default WrappedComponent => {
 
         render() {
             const { error, isLoaded, data, login } = this.state
+
             if (error) {
                 return <div>Erreur : {error.message}</div>;
             } else if (!isLoaded) {
@@ -63,7 +64,11 @@ export default WrappedComponent => {
             } else {
                 return (
 
-                    <WrappedComponent data={data} login={login}  {...this.props} />
+                    <WrappedComponent
+                        data={data}
+                        login={login}
+                        {...this.props}
+                    />
                 );
             }
 
