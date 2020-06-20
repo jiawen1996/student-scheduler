@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Scheduler from "./components/Scheduler";
-// import Toolbar from "./components/Toolbar";
-import MessageArea from "./components/MessageArea";
 
 import "./App.css";
 import withFetchData from "./HOC/withFetchData";
@@ -18,7 +16,7 @@ class App extends Component {
 		super(props)
 
 		const storage = new LocalStorageManager()
-		storage.set("logins", ["lyujiawe", "jbarthel"])
+		storage.set("logins", ["nguyetra","lyujiawe", "jbarthel"])
 		let logins = storage.logins()
 
 
@@ -31,22 +29,6 @@ class App extends Component {
 			uvs: []
 		};
 	}
-	addMessage(message) {
-		const maxLogLength = 5;
-		const newMessage = { message };
-		const messages = [newMessage, ...this.state.messages];
-
-		if (messages.length > maxLogLength) {
-			messages.length = maxLogLength;
-		}
-		this.setState({ messages });
-	}
-
-	logDataUpdate = (action, ev, id) => {
-		const text = ev && ev.text ? ` (${ev.text})` : "";
-		const message = `event ${action}: ${id} ${text}`;
-		this.addMessage(message);
-	};
 
 	addLogin = (login) => {
 		this.setState({
@@ -66,49 +48,42 @@ class App extends Component {
 	}
 
 	render() {
-		const { currentTimeFormatState, messages, logins } = this.state;
+		const { currentTimeFormatState, logins } = this.state;
 		return (
 			<div>
-				<header>SR03</header>
-				<div className="clearfix wrapper">
-					<div className="main">
-						<div className="scheduler-container">
-							<SchedulerWithData
-								timeFormatState={currentTimeFormatState}
-								onDataUpdated={this.logDataUpdate}
-								id="schedule"
-								logins={logins}
+				<header className="App-header">
+        		<h1>UTC Scheduler</h1>
+      	</header>
+				<div className="clearfix main-container">
+					<div className="row">
+						<div className="left">
+							<LoginInput
+								handleClick={(this.addLogin)}
 							/>
-						</div>
-						<MessageArea messages={messages} />
-					</div>
-					<div className="left">
-						<div className="left-content">
-							<div className="row">
-								<div className="col">
-									<LoginInput
-										handleClick={(this.addLogin)}
-									/>
-								</div>
-							</div>
-							<div className="row" />
-							<div className="row">
+							<div>
 								<label htmlFor="exampleInputEmail1">Current students:</label>
 							</div>
-							<div className="row">
-								<StudentsList
+							<StudentsList
+								logins={logins}
+								handleClick={(this.deleteLogin)}
+							/>
+						</div>
+						<div className="main">
+							<div className="scheduler-container">
+								<SchedulerWithData
+									timeFormatState={currentTimeFormatState}
+									onDataUpdated={this.logDataUpdate}
+									id="schedule"
 									logins={logins}
-									handleClick={(this.deleteLogin)}
 								/>
 							</div>
 						</div>
-
 					</div>
 				</div>
-				<footer>
-					UTC SR03 P20
+				<footer className="App-footer">
+					UTC SR03 P20 - Lyu Jiawen - Linh Nguyen
 				</footer>
-			</div >
+			</div>
 		);
 
 	}

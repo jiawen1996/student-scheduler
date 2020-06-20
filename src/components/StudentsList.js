@@ -11,6 +11,7 @@ export const StudentsList = (props) => {
                         logins.map(login => (
                             <li
                                 className="list-group-item"
+                                horizontal="md"
                                 key={login}
                             >
                                 {

@@ -55,7 +55,7 @@ export default class Scheduler extends Component {
 
 
     componentDidMount() {
-        scheduler.skin = 'material';
+        scheduler.skin = 'terrace';
         scheduler.config.header = [
             'day',
             'week',
@@ -65,8 +65,10 @@ export default class Scheduler extends Component {
             'today',
             'next'
         ];
+        scheduler.config.first_hour = 8;
+        scheduler.config.last_hour = 22;
         scheduler.config.hour_date = '%g:%i %A';
-        scheduler.xy.scale_width = 70;
+        scheduler.xy.scale_width = 60;
 
         this.initSchedulerEvents();
 
