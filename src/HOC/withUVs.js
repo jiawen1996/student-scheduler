@@ -98,12 +98,20 @@ const extractUvDateInfo = (uvs) => {
     return uvInAllTerm
 }
 
+const getCurrentClasses = data => Array.from(new Set(data.map(elem => elem.uv)))
+
 
 
 const withUVs = WrappedComponent => props => {
     const { data } = props;
     const uvs = extractUvDateInfo(data)
-    return <WrappedComponent events={uvs} {...props} />;
+    const classes = getCurrentClasses(data)
+    console.log("classes:", classes)
+    return <WrappedComponent
+        classes={classes}
+        events={uvs}
+        {...props}
+    />;
 
 
 }

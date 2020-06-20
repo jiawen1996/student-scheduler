@@ -18,29 +18,27 @@ const toColorName = index => (
         8: "6c6c8c", //purple
         9: "#cab08e", //beige
         10: "#6284a4", //light blue
-        11: "#634b1c" 
+        11: "#634b1c"
     }[index]
 )
 
 const changeColorForEachStudent = (events, logins) => {
-    console.log(logins)
-
-    uvs = getUVs(events)
-
     events.map(event => {
-        let index = 0
-        if (uvs.length != 0) {
-            index = uvs.indexOf(event.text) % 8;
-        }
-        
-        event.color = toColorName(index)
-        console.log("uv ", event.text)
-        console.log("uv index : ", index)
+        event.color = toColorName(logins.indexOf(event.login))
         event.text = event.text + "\n" + event.login
         scheduler.updateEvent(event.id)
-
     })
 }
+
+const changeColorForEachClass = (events, classes) => {
+    events.map(event => {
+        event.color = toColorName(classes.indexOf(event.text))
+        event.text = event.text + "\n" + event.login
+        scheduler.updateEvent(event.id)
+    })
+}
+
+
 
 function getUVs(events) {
     let uvs = [];
@@ -52,7 +50,7 @@ function getUVs(events) {
     });
 
     console.log("uvs in scheduler:", uvs);
-    
+
     return uvs;
 }
 
@@ -108,9 +106,8 @@ export default class Scheduler extends Component {
         console.log("logins in scheduler:", logins)
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
-        this.getUVs(events);
         scheduler.parse(events);
-        changeColorForEachStudent(events, logins, this.state.uvs);
+        changeColorForEachStudent(events, logins);
     }
 
     shouldComponentUpdate(nextProps) {
@@ -118,12 +115,12 @@ export default class Scheduler extends Component {
     }
 
     componentDidUpdate() {
-        const { events, logins } = this.props
+        const { events, logins, classes } = this.props
         scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
         scheduler.clearAll();
-        this.getUVs(events);
         scheduler.parse(events);
-        changeColorForEachStudent(events, logins, this.state.uvs);
+        // changeColorForEachStudent(events, logins);
+        changeColorForEachClass(events, classes)
     }
 
     setTimeFormat(state) {
