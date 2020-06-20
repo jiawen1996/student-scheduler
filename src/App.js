@@ -31,9 +31,14 @@ class App extends Component {
 	}
 
 	addLogin = (login) => {
-		this.setState({
-			logins: [...this.state.logins, login]
-		})
+		if (!this.state.logins.includes(login)) {
+			this.setState({
+				logins: [...this.state.logins, login]
+			})
+		} else {
+			alert("Student has been added in list. Please enter another login !");
+		}
+		
 	}
 
 	deleteLogin = (login) => {
