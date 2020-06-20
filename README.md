@@ -1,17 +1,17 @@
-# scheduler-react-sample
+# Devoir 4 : Application d'emploi du temps
 
-Example for scheduler using module DHTMLX Scheduler
+Application permet d'afficher d'emploi du temps d'un étudiant en interrogeant une API Rest
 
-## Available Scripts
+## Execution
 
-In the project directory, you can run:
+`npm install` : pour installer les packages
 
-### `npm start`
+`npm start`: lancer l'application
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Groupe
 
-## Link
+Créneau de TD: Lundi 10:15 - 13:15
 
-[Link to tutorial](https://dhtmlx.com/blog/use-dhtmlx-scheduler-component-react-js-library-demo/)
+Group1: Nguyen Tran Khanh Linh & LYU Jiawen
+
 
